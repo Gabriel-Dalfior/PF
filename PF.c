@@ -8,7 +8,7 @@ int main(){
 
     int selecao;
     FILE *file;
-    char mapa[25], matriz[25];  
+    char mapa[25], matriz[28];  
     int numero, x=0;
 
     printf("\nBem vindo ao Encontre o Queijo\n");
@@ -38,14 +38,15 @@ int main(){
                 break;
 
             case 3:
+                srand(time(NULL));
                 for(int cont=1; cont<=5; cont++){
                     for(; strlen(matriz) <= 25; x++ ){
-                        srand(time(NULL));
-                        numero=rand()%2; //vai mandar numeros aleatorios até 2
+                        numero=rand()%3; //vai mandar numeros aleatorios até 2
                         if(cont*x%5==0){
                             matriz[x] = '\n';
+                            printf("\n");
                         }
-                        if(numero==1){
+                        if(numero==0 || numero==1){
                             matriz[x] = '0';
                             printf("%c ", matriz[x]);
                         }
@@ -53,6 +54,21 @@ int main(){
                             matriz[x] = '1';
                             printf("%c ", matriz[x]);
                         }
+                    }
+                }
+                numero=rand()%25;
+                matriz[numero] = '7';
+                
+                numero=rand()%25;
+                matriz[numero] = '9';
+                
+                for(int cont=1; cont<=5; cont++){
+                    for(x=1; strlen(matriz) <= 25; x++ ){
+                        if(cont*x%5==0){
+                            matriz[x] = '\n';
+                            printf("\n");
+                        }
+                            printf("%c ", matriz[x]);
                     }
                 }
                 break;
@@ -71,4 +87,20 @@ int main(){
     }
 
     return 0;
+}
+
+int MU(){
+
+}
+int MD (){
+
+}
+int MR(){
+
+}
+int ML(){
+
+}
+int verif(){
+
 }
