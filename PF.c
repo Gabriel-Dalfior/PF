@@ -3,13 +3,15 @@
 #include <stdlib.h>
 #include <time.h>
 
+int MR(char matriz[6][5]);
+
 
 int main(){
 
     int selecao;
     FILE *file;
-    char mapa[25], matriz[28];  
-    int numero, x=0;
+    char mapa[25], matriz[6][5];  
+    int numero, x=0, cont;
 
     printf("\nBem vindo ao Encontre o Queijo\n");
 
@@ -38,45 +40,58 @@ int main(){
                 break;
 
             case 3:
+                printf("\n");
                 srand(time(NULL));
-                for(int cont=1; cont<=5; cont++){
-                    for(; strlen(matriz) <= 25; x++ ){
+                for(cont=1; cont<=5; cont++){
+                    for(x=0; x<=5; x++){
                         numero=rand()%3; //vai mandar numeros aleatorios até 2
-                        if(cont*x%5==0){
-                            matriz[x] = '\n';
-                            printf("\n");
+                        if(x==5){
+                            matriz[x][cont] = '\n';
+                            printf("\n");//printf somente para vizualização
                         }
-                        if(numero==0 || numero==1){
-                            matriz[x] = '0';
-                            printf("%c ", matriz[x]);
-                        }
-                        else if(numero==2){
-                            matriz[x] = '1';
-                            printf("%c ", matriz[x]);
+                        else{
+                            if(numero==0 || numero==1){
+                                matriz[x][cont] = '0';
+                                printf("%c ", matriz[x][cont]);//printf somente para vizualização
+                            }
+                            else if(numero==2){
+                                matriz[x][cont] = '1';
+                                printf("%c ", matriz[x][cont]);//printf somente para vizualização
+                            }
                         }
                     }
                 }
-                numero=rand()%25;
-                matriz[numero] = '7';
+                printf("\n----------------------------------\n");
                 
-                numero=rand()%25;
-                matriz[numero] = '9';
-                
-                for(int cont=1; cont<=5; cont++){
-                    for(x=1; strlen(matriz) <= 25; x++ ){
-                        if(cont*x%5==0){
-                            matriz[x] = '\n';
-                            printf("\n");
+                    x=rand()%5;
+                    cont=rand()%5;
+                    matriz[x][cont] = '7';
+                    for(;matriz[x][cont] == '7';){
+                        x=rand()%5;
+                        cont=rand()%5;
+                    }
+                    matriz[x][cont] = '9';
+
+                for(cont=1; cont<=5; cont++){
+                    for(x=0; x<=5; x++){
+                        if(x==5 && cont==5)
+                            break;
+                        if(x!=5){
+                            printf("%c ", matriz[x][cont]);
                         }
-                            printf("%c ", matriz[x]);
+                        else
+                           printf("%c", matriz[x][cont]); 
                     }
                 }
+
                 break;
 
             case 4:
+
                 break;
 
             case 5:
+                MR(matriz[6][5]);
                 fclose(file); // funcao para fechar arquivo .txt
                 break;
 
@@ -89,18 +104,43 @@ int main(){
     return 0;
 }
 
-int MU(){
+int MU(char matriz[30]){
 
 }
-int MD (){
+int MD (char matriz[30]){
 
 }
-int MR(){
+int MR(char matriz[6][5]){
+    int cont;
+    int x;
+    for(cont=0; cont<=5; cont++){
+        for(x=0; x<6; x++){
+            if(matriz[x][cont]=='7'){
+                printf("\no rato esta na posicao (%i,%i)\n", x, cont);
+                break;
+            }
+        }
+    }
+    if(x!=5){
+        x++;
+        matriz[x][cont] = '7';
+        x--;
+        matriz[x][cont] = '0';
+    }
+    for(cont=1; cont<=4; cont++){
+        for(x=1; x<=5; x++){
+            if(x==5){
+                printf("\n");
+                if(cont==5)
+                    break;
+            }
+            printf("%c ", matriz[x][cont]);
+        }
+    }
+}
+int ML(char matriz[30]){
 
 }
-int ML(){
-
-}
-int verif(){
+int verif(char matriz[30]){
 
 }
